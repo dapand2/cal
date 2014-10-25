@@ -8,13 +8,8 @@
 	<string name="message_prompt">Choose a text message</string>
  
     <string-array name="message_arrays">
-        <item>Malaysia</item>
-        <item>United States</item>
-        <item>Indonesia</item>
-        <item>France</item>
-        <item>Italy</item>
-        <item>Singapore</item>
-        <item>New Zealand</item>
-        <item>India</item>
+        <item>Sorry I cant talk right now</item>
+        <item>I  will call you later</item>
+        <item>In a meeting , will get back to you soon</item>
     </string-array>
 </resources>

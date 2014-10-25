@@ -1,7 +1,9 @@
 package com.example.cal;
+import java.text.BreakIterator;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 
 
 
@@ -69,14 +71,14 @@ public class MainActivity extends Activity  {
 		setContentView(R.layout.activity_main);
 		
 		getCalendars();
-        populateCalendarSpinner();
+		
         populateGetEventsBtn();
         saveeventdata1();
         saveeventdata2();
         saveeventdata3();
         
         displ2=(TextView) findViewById(R.id.messages);
-        
+        displ2.setVisibility(View.GONE);
 		 
         
         
@@ -87,9 +89,8 @@ public class MainActivity extends Activity  {
 		if(m_calendars==null)
     	{
     		displ2.setText("no calendar found");
-    		return;
-    	}
-    	else
+       	}
+    	else if (m_calendars!=null)
     	{
     	m_spinner_calender = (Spinner)this.findViewById(R.id.spinner_calendar);
     	ArrayAdapter l_arrayAdapter = new ArrayAdapter(this.getApplicationContext(),R.layout.spinner_layout, m_calendars);
@@ -104,6 +105,8 @@ public class MainActivity extends Activity  {
 				text1.setVisibility(View.GONE);
 				text2.setVisibility(View.GONE);
 				text3.setVisibility(View.GONE);
+				displ2.setVisibility(View.GONE);
+				
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {}
@@ -161,6 +164,27 @@ public class MainActivity extends Activity  {
 
 			@Override
 			public void onClick(View v) {
+				prf = getSharedPreferences("event_details", MODE_PRIVATE);
+				SharedPreferences.Editor edit=prf.edit();
+				edit.putString("key_begin", begin2);
+				edit.putString("key_end", end2);
+				edit.commit();
+				Toast.makeText(getBaseContext(), "inserted", Toast.LENGTH_LONG).show();
+				/*datab = new database(getBaseContext());
+				datab.open();
+				long id = datab.insertdata(begin1, end1);
+				Toast.makeText(getBaseContext(), "inserted", Toast.LENGTH_LONG)
+						.show();
+				Cursor C = datab.returndata();
+				if (C.moveToFirst()) {
+					do {
+						displ1.setText(C.getString(0).toString());
+						displ2.setText(C.getString(1).toString());
+					} while (C.moveToNext());
+				}*/
+				//datab.close();
+				Intent intent = new Intent(v.getContext(),TextMessage.class);
+				startActivityForResult(intent, 0);
 				// TODO Auto-generated method stub
 				/*datab = new database(getBaseContext());
 				datab.open();
@@ -179,49 +203,67 @@ public class MainActivity extends Activity  {
 		text3.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				/*datab = new database(getBaseContext());
-				datab.open();
-				long id = datab.insertdata(begin3, end3);
-				Toast.makeText(getBaseContext(), "inserted", Toast.LENGTH_LONG)
-						.show();
-								datab.close();*/
+			public void onClick(View v) {prf = getSharedPreferences("event_details", MODE_PRIVATE);
+			SharedPreferences.Editor edit=prf.edit();
+			edit.putString("key_begin", begin3);
+			edit.putString("key_end", end3);
+			edit.commit();
+			Toast.makeText(getBaseContext(), "inserted", Toast.LENGTH_LONG).show();
+			Intent intent = new Intent(v.getContext(),TextMessage.class);
+			startActivityForResult(intent, 0);
 			}
 		});
 	}
 	
-	 private MyCalendar m_calendars[];
-	    private String m_selectedCalendarId = "0";
-	    private void getCalendars() {
-	    	String[] l_projection = new String[]{"_id", "calendar_displayName"};
-	    	Uri l_calendars;
-	    	if (Build.VERSION.SDK_INT >= 8) {
-	    		l_calendars = Uri.parse("content://com.android.calendar/calendars");
-	    	} else {
-	    		l_calendars = Uri.parse("content://calendar/calendars");
-	    	}
-	    	Cursor l_managedCursor = this.managedQuery(l_calendars, l_projection, null, null, null);	//all calendars
-	    	//Cursor l_managedCursor = this.managedQuery(l_calendars, l_projection, "selected=1", null, null);   //active calendars
-	    	if (l_managedCursor.moveToFirst()) {
-	    		m_calendars = new MyCalendar[l_managedCursor.getCount()];
-	    		String l_calName;
-	    		String l_calId;
-	    		int l_cnt = 0;
-	    		int l_nameCol = l_managedCursor.getColumnIndex(l_projection[1]);
-	    		int l_idCol = l_managedCursor.getColumnIndex(l_projection[0]);
-	    		do {
-	    			l_calName = l_managedCursor.getString(l_nameCol);
-	    			l_calId = l_managedCursor.getString(l_idCol);
-	    			m_calendars[l_cnt] = new MyCalendar(l_calName, l_calId);
-	    			++l_cnt;
-	    		} while (l_managedCursor.moveToNext());
-	    	
-	    		
-	    	
-	    	}
-	    }
-	    
+	private MyCalendar m_calendars[];
+	private String m_selectedCalendarId = "0";
+
+	private void getCalendars() {
+		String[] l_projection = new String[] { "_id", "calendar_displayName" };
+		Uri l_calendars;
+		if (Build.VERSION.SDK_INT >= 8) {
+			l_calendars = Uri.parse("content://com.android.calendar/calendars");
+		} else {
+			l_calendars = Uri.parse("content://calendar/calendars");
+		}
+		
+			
+		Cursor l_managedCursor = this.managedQuery(l_calendars, l_projection,
+				null, null, null); 
+		if(l_managedCursor.getCount()==0)
+		{
+			
+		}
+		else if(l_managedCursor.getCount()!=0)
+		{	
+		// all calendars
+		/*if (l_managedCursor.getCount() == 0) 
+			displ2.setVisibility(View.VISIBLE);
+			displ2.setText("no calendar available");
+		 else if (l_managedCursor.getCount() != 0) 
+		
+		{*/
+			// Cursor l_managedCursor = this.managedQuery(l_calendars,
+			// l_projection, "selected=1", null, null); //active calendars
+			if (l_managedCursor.moveToFirst()) {
+				m_calendars = new MyCalendar[l_managedCursor.getCount()];
+				String l_calName;
+				String l_calId;
+				int l_cnt = 0;
+				int l_nameCol = l_managedCursor.getColumnIndex(l_projection[1]);
+				int l_idCol = l_managedCursor.getColumnIndex(l_projection[0]);
+				do {
+					l_calName = l_managedCursor.getString(l_nameCol);
+					l_calId = l_managedCursor.getString(l_idCol);
+					m_calendars[l_cnt] = new MyCalendar(l_calName, l_calId);
+					++l_cnt;
+				} while (l_managedCursor.moveToNext());
+			}
+			populateCalendarSpinner();
+		}
+		
+	}
+
 	    private void getLastThreeEvents() {
 	    	Uri l_eventUri;
 	        if (Build.VERSION.SDK_INT >= 8 ) {
@@ -245,7 +287,9 @@ public class MainActivity extends Activity  {
 	    	//Cursor l_managedCursor = this.managedQuery(l_eventUri, l_projection, null, null, null);
 	    	if (l_managedCursor.getCount()==0)
 	    	{
+	    		displ2.setVisibility(View.VISIBLE);
 	    		displ2.setText("No Entry found");
+	    	
 	    		
 	    	}
 	    	if (l_managedCursor.moveToFirst()) {
