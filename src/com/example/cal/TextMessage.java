@@ -58,7 +58,7 @@ public class TextMessage extends ActionBarActivity {
 				txt1.setText(start);
 				txt2.setText(end);
 				String getdata = data.getText().toString();
-				if(m_settextmessage=="")
+				//if(m_settextmessage=="")
 				
 				
 				datab = new database(getBaseContext());
