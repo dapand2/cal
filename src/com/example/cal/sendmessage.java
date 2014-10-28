@@ -2,6 +2,8 @@ package com.example.cal;
 
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,6 +27,30 @@ public void onReceive(Context context, Intent intent) {
 						TelephonyManager.EXTRA_STATE_RINGING)) {
 					try {
 						sendmessage(context, intent);
+						TelephonyManager telephonyManager =(TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+	                      
+                        // Get the getITelephony() method                        
+						Class<?> classTelephony;
+						try {
+							classTelephony = Class.forName(telephonyManager.getClass().getName());
+							Method methodGetITelephony = classTelephony.getDeclaredMethod("getITelephony");
+			                 
+	                        // Ignore that the method is supposed to be private                          methodGetITelephony.setAccessible(true);
+	                 
+	                        // Invoke getITelephony() to get the ITelephony interface
+	                        Object telephonyInterface = methodGetITelephony.invoke(telephonyManager);
+	                 
+	                        // Get the endCall method from ITelephony
+	                        Class<?> telephonyInterfaceClass = Class.forName(telephonyInterface.getClass().getName());
+	                        Method methodEndCall = telephonyInterfaceClass.getDeclaredMethod("endCall");
+	                 
+	                        // Invoke endCall()
+	                        methodEndCall.invoke(telephonyInterface);
+						} catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+                        
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

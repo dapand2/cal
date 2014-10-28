@@ -5,9 +5,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_text_messaage">TextMessaage</string>
-	<string name="message_prompt">Choose a text message</string>
+	<color name="blue">#B0E0E6</color>
  
     <string-array name="message_arrays">
+        <item>Please choose a text message</item>
         <item>Sorry I cant talk right now</item>
         <item>I  will call you later</item>
         <item>In a meeting , will get back to you soon</item>

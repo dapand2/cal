@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
@@ -25,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -57,7 +59,7 @@ public class MainActivity extends Activity {
 	private Button text1;
 	private Button text2;
 	private Button text3;
-	private Button text4;
+	
 	private Button m_button_show;
 	private TextView m_text_event;
 	String begin1, begin2, begin3;
@@ -66,12 +68,13 @@ public class MainActivity extends Activity {
 	private TextView displ2;
 	SharedPreferences prf;
 	private ImageView img;
+	private ImageButton m_cal_button;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		getWindow().getDecorView().setBackgroundColor(Color.BLUE);
 		getCalendars();
 		callCalendar();
 		populateGetEventsBtn();
@@ -89,13 +92,12 @@ public class MainActivity extends Activity {
 	private void callCalendar() {
 		// TODO Auto-generated method stub
 
-		text4 = (Button) findViewById(R.id.button4);
-		text4.setOnClickListener(new View.OnClickListener() {
-
+		m_cal_button=(ImageButton) findViewById(R.id.m_cal_button);
+		m_cal_button.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
 				startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri
 						.parse("content://com.android.calendar/time/")));
 			}
@@ -250,17 +252,17 @@ public class MainActivity extends Activity {
 		Cursor l_managedCursor = this.managedQuery(l_calendars, l_projection,
 				null, null, null);
 		if (l_managedCursor.getCount() == 0) {
-			text4 = (Button) findViewById(R.id.button4);
-			text4.setVisibility(View.VISIBLE);
+			
+			m_cal_button=(ImageButton) findViewById(R.id.m_cal_button);
+			m_cal_button.setVisibility(View.VISIBLE);
 			img = (ImageView) findViewById(R.id.imageView1);
-			img.setImageResource(R.drawable.h);
+			img.setImageResource(R.drawable.nocalendar);
 			img.setVisibility(View.VISIBLE);
 
-		
 		} else if (l_managedCursor.getCount() != 0) {
 			m_spinner_calender = (Spinner) this
 					.findViewById(R.id.spinner_calendar);
-			m_button_getEvents= (Button) findViewById(R.id.button_get_events);
+			m_button_getEvents = (Button) findViewById(R.id.button_get_events);
 			m_spinner_calender.setVisibility(View.VISIBLE);
 			m_button_getEvents.setVisibility(View.VISIBLE);
 			// all calendars
