@@ -1083,12 +1083,13 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int blue_button=0x7f020057;
         public static final int ic_launcher=0x7f020058;
-        public static final int m_buttonstyle=0x7f020059;
-        public static final int m_calbutton=0x7f02005a;
-        public static final int m_rounded=0x7f02005b;
-        public static final int m_smallcal=0x7f02005c;
-        public static final int nocalendar=0x7f02005d;
-        public static final int red_button=0x7f02005e;
+        public static final int m_back=0x7f020059;
+        public static final int m_buttonstyle=0x7f02005a;
+        public static final int m_calbutton=0x7f02005b;
+        public static final int m_rounded=0x7f02005c;
+        public static final int m_smallcal=0x7f02005d;
+        public static final int nocalendar=0x7f02005e;
+        public static final int red_button=0x7f02005f;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1128,10 +1129,10 @@ containing a value of this type.
         public static final int imageView1=0x7f05003d;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
-        public static final int m_Sel=0x7f050048;
+        public static final int m_Sel=0x7f050047;
         public static final int m_cal_button=0x7f050043;
-        public static final int m_data=0x7f050047;
-        public static final int m_errormessage=0x7f050046;
+        public static final int m_data=0x7f050046;
+        public static final int m_errormessage=0x7f050048;
         public static final int m_submit=0x7f050045;
         public static final int m_textmessage=0x7f050044;
         public static final int messages=0x7f050042;
