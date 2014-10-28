@@ -7,8 +7,10 @@ import java.util.Calendar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,12 +23,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView;
 
-public class TextMessage extends ActionBarActivity {
+public class SavetextMessage extends ActionBarActivity {
 	ImageButton submit;
 	EditText data;
 	private TextView txt1, txt2, m_errormsg;
 	SharedPreferences prf;
-	database datab;
+	Database datab;
 	Spinner m_textmsg;
 	String m_settextmessage;
 	int spinner_pos;
@@ -51,6 +53,8 @@ public class TextMessage extends ActionBarActivity {
 				if (count > 0) {
 					submit.setVisibility(View.VISIBLE);
 				}
+				m_errormsg = (TextView) findViewById(R.id.m_errormessage);
+				m_errormsg.setVisibility(View.GONE);
 			}
 
 			@Override
@@ -73,18 +77,20 @@ public class TextMessage extends ActionBarActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				submit.setImageResource(R.drawable.blue_button);
+				Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				vibe.vibrate(200);
+				
 				prf = getSharedPreferences("event_details", MODE_PRIVATE);
 
-				/*txt1 = (TextView) findViewById(R.id.textView2);
-				txt2 = (TextView) findViewById(R.id.textView3);*/
+				
 				String start = prf.getString("key_begin", "");
 				String end = prf.getString("key_end", "");
-				/*txt1.setText(start);
-				txt2.setText(end);*/
+				
 				String getdata = data.getText().toString();
 
-				if (spinner_pos != 0 && getdata.length()!=0) {
+				if (spinner_pos != 0 && getdata.length() != 0) {
 					m_errormsg = (TextView) findViewById(R.id.m_errormessage);
+					m_errormsg.setVisibility(View.VISIBLE);
 					m_errormsg.setText("Please input a single message");
 
 				} else {
@@ -94,11 +100,11 @@ public class TextMessage extends ActionBarActivity {
 						m_messagetobesent = m_settextmessage;
 					}
 
-					else if (spinner_pos == 0 && getdata.length()!=0) {
+					else if (spinner_pos == 0 && getdata.length() != 0) {
 						m_messagetobesent = getdata;
 					}
 
-					datab = new database(getBaseContext());
+					datab = new Database(getBaseContext());
 					datab.open();
 					long id = datab.insertdata(start, end, m_messagetobesent);
 					Toast.makeText(getBaseContext(), "data inserted",
@@ -109,14 +115,7 @@ public class TextMessage extends ActionBarActivity {
 			}
 		});
 
-		// prf=getSharedPreferences("event_details", MODE_PRIVATE);
-
-		/*
-		 * txt1=(TextView) findViewById(R.id.textView2); txt2=(TextView)
-		 * findViewById(R.id.textView3); String start=prf.getString("key_begin",
-		 * ""); String end=prf.getString("key_end", ""); txt1.setText(start);
-		 * txt2.setText(end);
-		 */
+		
 
 	}
 
@@ -157,6 +156,9 @@ public class TextMessage extends ActionBarActivity {
 							m_settextmessage = parent.getItemAtPosition(pos)
 									.toString();
 						}
+
+						m_errormsg = (TextView) findViewById(R.id.m_errormessage);
+						m_errormsg.setVisibility(View.GONE);
 
 					}
 

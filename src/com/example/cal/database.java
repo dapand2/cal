@@ -9,7 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class database {
+public class Database {
 
 	public static final String start="starttime";
 	public static final String end="endtime";
@@ -21,7 +21,7 @@ public class database {
 	Databasehelp dbhelper;
 	Context ctx;
 	SQLiteDatabase db;
-	public database(Context ctx)
+	public Database(Context ctx)
 	{
 		this.ctx = ctx;
 		dbhelper=new Databasehelp(ctx);		
@@ -61,7 +61,7 @@ public class database {
 	
 	}
 	
-	public database open() {
+	public Database open() {
 		db = dbhelper.getWritableDatabase();
 		return this;
 	}

@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+
+
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentUris;
@@ -64,7 +66,7 @@ public class MainActivity extends Activity {
 	private TextView m_text_event;
 	String begin1, begin2, begin3;
 	String end1, end2, end3;
-	database datab;
+	Database datab;
 	private TextView displ2;
 	SharedPreferences prf;
 	private ImageView img;
@@ -172,7 +174,7 @@ public class MainActivity extends Activity {
 				 * (C.moveToNext()); }
 				 */
 				// datab.close();
-				Intent intent = new Intent(v.getContext(), TextMessage.class);
+				Intent intent = new Intent(v.getContext(), SavetextMessage.class);
 				startActivityForResult(intent, 0);
 			}
 		});
@@ -202,7 +204,7 @@ public class MainActivity extends Activity {
 				 * (C.moveToNext()); }
 				 */
 				// datab.close();
-				Intent intent = new Intent(v.getContext(), TextMessage.class);
+				Intent intent = new Intent(v.getContext(), SavetextMessage.class);
 				startActivityForResult(intent, 0);
 				// TODO Auto-generated method stub
 				/*
@@ -231,7 +233,7 @@ public class MainActivity extends Activity {
 				edit.commit();
 				Toast.makeText(getBaseContext(), "inserted", Toast.LENGTH_LONG)
 						.show();
-				Intent intent = new Intent(v.getContext(), TextMessage.class);
+				Intent intent = new Intent(v.getContext(), SavetextMessage.class);
 				startActivityForResult(intent, 0);
 			}
 		});
