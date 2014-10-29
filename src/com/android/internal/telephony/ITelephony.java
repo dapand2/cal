@@ -5,9 +5,9 @@ public interface ITelephony {
 	boolean endCall();
 
 	  
-    void answerRingingCall();
+    //void answerRingingCall();
 
    
-    void silenceRinger();
+    //void silenceRinger();
 
 }

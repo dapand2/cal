@@ -28,36 +28,7 @@
         android:src="@drawable/nocalendar"
         android:visibility="invisible" />"
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="27dp"
-        android:text="Button"
-        android:visibility="invisible" />
-
     
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button_get_events"
-        android:layout_below="@+id/button_get_events"
-        android:layout_marginTop="54dp"
-        android:text="Button"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="42dp"
-        android:text="Button"
-        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/messages"
@@ -89,5 +60,38 @@
         android:drawableRight="@drawable/m_smallcal"
         android:text="Get Events from "
         android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/m_setevent1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/messages"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="Button"
+        android:visibility="invisible"
+        android:background="@drawable/m_rounded" />
+
+    <Button
+        android:id="@+id/m_setevent2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/m_setevent1"
+        android:layout_marginTop="14dp"
+        android:text="Button"
+        android:visibility="invisible"
+        android:background="@drawable/m_rounded" />
+
+    <Button
+        android:id="@+id/m_setevent3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/m_setevent2"
+        android:layout_marginTop="18dp"
+        android:text="Button"
+        android:visibility="invisible" 
+        android:background="@drawable/m_rounded"/>
     
 </RelativeLayout>

@@ -26,7 +26,7 @@ import android.widget.AdapterView;
 public class SavetextMessage extends ActionBarActivity {
 	ImageButton submit;
 	EditText data;
-	private TextView txt1, txt2, m_errormsg;
+	private TextView m_errormsg;
 	SharedPreferences prf;
 	Database datab;
 	Spinner m_textmsg;
@@ -38,9 +38,12 @@ public class SavetextMessage extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_text_message);
+		
 		submit = (ImageButton) findViewById(R.id.m_submit);
 		data = (EditText) findViewById(R.id.m_data);
+		
 		m_textmessagesItemSelection();
+		//Text change listener used to check of user enters a text in textbox the submit button appers and if he removes the text it disappears
 		data.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -76,10 +79,11 @@ public class SavetextMessage extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				submit.setImageResource(R.drawable.blue_button);
+				
 				Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 				vibe.vibrate(200);
 				
+				//getting shared preferences that were saved in main activity.
 				prf = getSharedPreferences("event_details", MODE_PRIVATE);
 
 				
@@ -87,13 +91,17 @@ public class SavetextMessage extends ActionBarActivity {
 				String end = prf.getString("key_end", "");
 				
 				String getdata = data.getText().toString();
-
+				
+				//Condition to check and throw an error if user select a value from spinner and also enter a text in the textbox.
 				if (spinner_pos != 0 && getdata.length() != 0) {
 					m_errormsg = (TextView) findViewById(R.id.m_errormessage);
 					m_errormsg.setVisibility(View.VISIBLE);
 					m_errormsg.setText("Please input a single message");
 
-				} else {
+				} 
+				//Condition where we set the actual text message that is to be sent to the caller.
+				else {
+					submit.setImageResource(R.drawable.blue_button);
 
 					if (spinner_pos != 0 && getdata.length() == 0) {
 
@@ -104,12 +112,15 @@ public class SavetextMessage extends ActionBarActivity {
 						m_messagetobesent = getdata;
 					}
 
+					//Entering the values in database.
 					datab = new Database(getBaseContext());
 					datab.open();
 					long id = datab.insertdata(start, end, m_messagetobesent);
 					Toast.makeText(getBaseContext(), "data inserted",
 							Toast.LENGTH_LONG).show();
 					datab.close();
+					Toast.makeText(getBaseContext(), "App activated Scuccesfully", Toast.LENGTH_LONG)
+					.show();
 				}
 
 			}
@@ -138,6 +149,7 @@ public class SavetextMessage extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	//Function to check and return the message that has been selected by the user in the spinner
 	public void m_textmessagesItemSelection() {
 		m_textmsg = (Spinner) findViewById(R.id.m_textmessage);
 
@@ -147,6 +159,7 @@ public class SavetextMessage extends ActionBarActivity {
 					public void onItemSelected(AdapterView<?> parent,
 							View view, int pos, long id) {
 						submit = (ImageButton) findViewById(R.id.m_submit);
+						// conditions to check any changes to spinner and handle the output according to it.
 						if (pos == 0) {
 							submit.setVisibility(View.GONE);
 						} else if (pos != 0) {

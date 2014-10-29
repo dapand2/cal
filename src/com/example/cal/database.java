@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+//Database activity to implement any database storage
 public class Database {
 
 	public static final String start="starttime";
@@ -39,7 +40,7 @@ public class Database {
 			
 		}
 		
-		
+		//Creation of database on device.
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			// TODO Auto-generated method stub
@@ -61,6 +62,7 @@ public class Database {
 	
 	}
 	
+	//Function to open database connection
 	public Database open() {
 		db = dbhelper.getWritableDatabase();
 		return this;
@@ -70,6 +72,7 @@ public class Database {
 		dbhelper.close();
 
 	}
+	//Function to insert data to database from any activity.
 	public long insertdata(String starttime,String endtime,String message) {
 		ContentValues content = new ContentValues();
 		content.put(start,starttime);
@@ -78,7 +81,7 @@ public class Database {
 		return db.insertOrThrow(table_name, null, content);
 	}
 
-
+	//Function to read data from database.
 	public Cursor returndata() {
 		return db.query(table_name, new String[] { start,end,msg }, null, null, null,
 				null, null);
