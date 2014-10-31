@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cal"
+    package="com.multimedia.busy"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -33,7 +33,7 @@
             android:name=".SavetextMessage"
             android:label="@string/title_activity_text_messaage" >
         </activity>
-        <receiver android:name="com.example.cal.Sendmsganddisconnect">
+        <receiver android:name="com.multimedia.busy.Sendmsganddisconnect">
            <intent-filter >
                <action android:name="android.intent.action.PHONE_STATE"/>
            </intent-filter>
