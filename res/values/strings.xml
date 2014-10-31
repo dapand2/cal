@@ -2,15 +2,19 @@
 <resources>
 
     <string name="app_name">Busy</string>
-    
     <string name="action_settings">Settings</string>
     <string name="title_activity_text_messaage">TextMessaage</string>
-	<color name="blue">#B0E0E6</color>
- 
+
+    <color name="blue">#B0E0E6</color>
+
     <string-array name="message_arrays">
         <item>Please choose a text message</item>
         <item>Sorry I cant talk right now</item>
         <item>I  will call you later</item>
         <item>In a meeting , will get back to you soon</item>
     </string-array>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>
