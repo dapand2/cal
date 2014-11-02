@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:background="@drawable/m_rounded"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:entries="@array/message_arrays"
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/m_textmessage"
         android:layout_below="@+id/m_Sel"
+        android:background="@drawable/m_rounded"
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="please enter a text message" >
@@ -46,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/m_textmessage"
+        android:background="@drawable/m_rounded"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
         android:text="Or Please enter a text message below:" />
@@ -54,6 +57,7 @@
         android:id="@+id/m_errormessage"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/m_rounded"
         android:layout_below="@+id/m_data"
         android:layout_marginTop="56dp"
         android:text="TextView" 

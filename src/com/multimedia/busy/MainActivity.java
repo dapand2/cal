@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		getWindow().getDecorView().setBackgroundColor(Color.BLUE);
+		//getWindow().getDecorView().setBackgroundColor(Color.BLUE);
 		getCalendars();
 		callCalendar();
 		geteventdetails();
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 		saveeventdata2();
 		saveeventdata3();
 		// callCalendar();
-		displ2 = (TextView) findViewById(R.id.messages);
+		displ2 = (TextView) findViewById(R.id.m_messages);
 		displ2.setVisibility(View.GONE);
 		// img.setVisibility(View.GONE);
 		// text4.setVisibility(View.GONE);
@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
 			displ2.setText("no calendar found");
 		} else if (m_calendars != null) {
 			m_spinner_calender = (Spinner) this
-					.findViewById(R.id.spinner_calendar);
+					.findViewById(R.id.m_spinner_calendar);
 			ArrayAdapter l_arrayAdapter = new ArrayAdapter(
 					this.getApplicationContext(), R.layout.spinner_layout,
 					m_calendars);
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void geteventdetails() {
-		m_button_getEvents = (Button) findViewById(R.id.button_get_events);
+		m_button_getEvents = (Button) findViewById(R.id.m_get_events);
 		m_button_getEvents.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -216,14 +216,14 @@ public class MainActivity extends Activity {
 			
 			m_cal_button=(ImageButton) findViewById(R.id.m_cal_button);
 			m_cal_button.setVisibility(View.VISIBLE);
-			img = (ImageView) findViewById(R.id.imageView1);
+			img = (ImageView) findViewById(R.id.m_image);
 			img.setImageResource(R.drawable.nocalendar);
 			img.setVisibility(View.VISIBLE);
 			//condition to check and change the display if there are  calendars present in users device.
 		} else if (m_calcursor.getCount() != 0) {
 			m_spinner_calender = (Spinner) this
-					.findViewById(R.id.spinner_calendar);
-			m_button_getEvents = (Button) findViewById(R.id.button_get_events);
+					.findViewById(R.id.m_spinner_calendar);
+			m_button_getEvents = (Button) findViewById(R.id.m_get_events);
 			m_spinner_calender.setVisibility(View.VISIBLE);
 			m_button_getEvents.setVisibility(View.VISIBLE);
 			
