@@ -1,7 +1,7 @@
 package com.multimedia.busy;
 
 public class Calendarclass {
-	
+	//Class which is used to create a constructor of values that are the calendar id and the calendar name.
 	public String name;
 	public String id;
 

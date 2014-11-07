@@ -11,14 +11,13 @@
 
     <Spinner
         android:id="@+id/m_textmessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="110px"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/m_rounded"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:entries="@array/message_arrays"
-               />
+        android:background="@drawable/m_rounded"
+        android:entries="@array/message_arrays" />
 
     <ImageButton
         android:id="@+id/m_submit"
@@ -33,10 +32,10 @@
     <EditText
         android:id="@+id/m_data"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80px"
         android:layout_alignLeft="@+id/m_textmessage"
-        android:layout_below="@+id/m_Sel"
         android:background="@drawable/m_rounded"
+        android:layout_below="@+id/m_Sel"
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="please enter a text message" >

@@ -9,9 +9,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.multimedia.busy.SplashScreen" >
 
+    <VideoView
+        android:id="@+id/m_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <TextView
+        android:id="@+id/m_skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignBottom="@+id/m_video"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FF0000"
+        android:text="Swipe anywhere to skip" />
 
-</RelativeLayout>
+    </RelativeLayout>

@@ -49,8 +49,7 @@ public class MainActivity extends Activity {
 	private Button m_event2;
 	private Button m_event3;
 	
-	//private Button m_button_show;
-	//private TextView m_text_event;
+	
 	String begin1, begin2, begin3;
 	String end1, end2, end3;
 	Database datab;
@@ -78,6 +77,7 @@ public class MainActivity extends Activity {
 
 	}
 
+	//This calls the internal calendar application of android if user chooses to add a new calendar.
 	private void callCalendar() {
 		// TODO Auto-generated method stub
 
@@ -93,6 +93,7 @@ public class MainActivity extends Activity {
 		});
 	}
 
+	//Populates the data in the spinner i.e shows the name of calendars to the user in the spinner.
 	private void populateCalendarSpinner() {
 		if (m_calendars == null) {
 			displ2.setText("no calendar found");
@@ -125,6 +126,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	//This is called when a user presses the getevent button in the application.
 	private void geteventdetails() {
 		m_button_getEvents = (Button) findViewById(R.id.m_get_events);
 		m_button_getEvents.setOnClickListener(new View.OnClickListener() {
@@ -186,8 +188,7 @@ public class MainActivity extends Activity {
 		edit.putString("key_begin", Begin);
 		edit.putString("key_end", End);
 		edit.commit();
-		Toast.makeText(getBaseContext(), "inserted", Toast.LENGTH_LONG)
-				.show();
+		
 		Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		vibe.vibrate(200);
 		Intent intent = new Intent(getBaseContext(), SavetextMessage.class);
@@ -320,17 +321,7 @@ public class MainActivity extends Activity {
 	//Managing the date time format 
 	private static final String DATE_TIME_FORMAT = "yyyy MMM dd, HH:mm:ss";
 
-	/*public static String getDateTimeStr(int p_delay_min) {
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat(DATE_TIME_FORMAT);
-		if (p_delay_min == 0) {
-			return sdf.format(cal.getTime());
-		} else {
-			Date l_time = cal.getTime();
-			l_time.setMinutes(l_time.getMinutes() + p_delay_min);
-			return sdf.format(l_time);
-		}
-	}*/
+	
 
 	public static String getDateTimeStr(String m_time_in_millis) {
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_TIME_FORMAT);

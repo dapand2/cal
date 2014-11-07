@@ -41,6 +41,7 @@ public class SavetextMessage extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_text_message);
 		
+		
 		submit = (ImageButton) findViewById(R.id.m_submit);
 		data = (EditText) findViewById(R.id.m_data);
 		
@@ -122,10 +123,10 @@ public class SavetextMessage extends ActionBarActivity {
 					datab.close();
 					Toast.makeText(getBaseContext(), "App activated Scuccesfully", Toast.LENGTH_LONG)
 					.show();
-					
+					//Plays the mp3 file to confirm success activation of the application.
 					mp=MediaPlayer.create(getBaseContext(),R.raw.m_msg);
 					mp.start();
-					// Set data source -
+					
 					
 				}
 

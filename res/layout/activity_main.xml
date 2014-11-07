@@ -60,17 +60,6 @@
         android:visibility="invisible" />
 
     <Button
-        android:id="@+id/m_setevent2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/m_cal_button"
-        android:layout_alignLeft="@+id/m_image"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/m_rounded"
-        android:text="Button"
-        android:visibility="invisible" />
-
-    <Button
         android:id="@+id/m_get_events"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,11 +72,23 @@
         android:visibility="invisible" />
 
     <Button
+        android:id="@+id/m_setevent2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/m_image"
+        android:layout_below="@+id/m_setevent1"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/m_rounded"
+        android:text="Button"
+        android:visibility="invisible" />
+
+    <Button
         android:id="@+id/m_setevent3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/m_image"
         android:layout_below="@+id/m_setevent2"
+        android:layout_marginTop="26dp"
         android:background="@drawable/m_rounded"
         android:text="Button"
         android:visibility="invisible" />

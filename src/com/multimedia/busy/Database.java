@@ -86,4 +86,11 @@ public class Database {
 		return db.query(table_name, new String[] { start,end,msg }, null, null, null,
 				null, null);
 	}
+	
+	//Used to delete data from the sql lite database.
+	public void delete()
+	{
+		
+		db.execSQL("delete from "+ table_name);
+	}
 }

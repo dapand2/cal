@@ -1,7 +1,13 @@
 package com.multimedia.busy;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
@@ -9,34 +15,39 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.widget.Spinner;
 import android.widget.VideoView;
 
 public class SplashScreen extends ActionBarActivity {
-
+private VideoView m_video;
+Database datab;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
+				
 		try {
-			VideoView videodisplay = new VideoView(this);
-			setContentView(videodisplay);
-			Uri video = Uri.parse("android.resource://" + getPackageName()
-					+ "/" + R.raw.m_movie);
-			videodisplay.setVideoURI(video);
+		//Setting a video view and setting the path of the video.
+			m_video = (VideoView) this.findViewById(R.id.m_video);
+			m_video.setVideoURI(Uri.parse("android.resource://" + getPackageName()
+					+ "/" + R.raw.m_movie));
+			
 
-			videodisplay.setOnCompletionListener(new OnCompletionListener() {
+			m_video.setOnCompletionListener(new OnCompletionListener() {
 
 				public void onCompletion(MediaPlayer mp) {
 					skip();
 				}
 
 			});
-			videodisplay.start();
+			m_video.start();
 		} catch (Exception ex) {
 			skip();
 		}
 
 	}
+
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,9 +58,7 @@ public class SplashScreen extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
+		
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -64,8 +73,7 @@ public class SplashScreen extends ActionBarActivity {
 	}
 
 	private void skip() {
-		// it is safe to use this code even if you
-		// do not intend to allow users to skip the splash
+		//Skip is called when the video either finishes or user swipes on the screen.
 		if (isFinishing())
 			return;
 		startActivity(new Intent(this, MainActivity.class));
